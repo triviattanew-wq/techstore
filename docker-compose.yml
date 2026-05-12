@@ -1,0 +1,51 @@
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: tech-store-db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: tech_store
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - tech-store-network
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: tech-store-app
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/tech_store?schema=public
+      NEXTAUTH_SECRET: techstore-secret-key-change-in-production
+      NEXTAUTH_URL: http://localhost:3000
+      ADMIN_EMAIL: admin@techstore.ru
+      ADMIN_PASSWORD: admin123
+      NEXT_PUBLIC_SITE_URL: http://localhost:3000
+      NEXT_PUBLIC_SITE_NAME: TechStore
+      NODE_ENV: production
+    ports:
+      - "3000:3000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ./public:/app/public
+    networks:
+      - tech-store-network
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+
+networks:
+  tech-store-network:
+    driver: bridge
