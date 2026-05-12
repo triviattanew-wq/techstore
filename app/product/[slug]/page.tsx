@@ -1,6 +1,4 @@
 import { prisma } from '@/lib/prisma'
-
-export const dynamic = 'force-dynamic'
 import { notFound } from 'next/navigation'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
@@ -9,6 +7,8 @@ import { ProductInfo } from '@/components/ProductInfo'
 import { ProductTabs } from '@/components/ProductTabs'
 import { RelatedProducts } from '@/components/RelatedProducts'
 import { ProductGrid } from '@/components/ProductGrid'
+
+export const dynamic = 'force-dynamic'
 
 async function getProduct(slug: string) {
   const product = await prisma.product.findUnique({

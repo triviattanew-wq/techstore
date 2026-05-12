@@ -1,9 +1,9 @@
 import { prisma } from '@/lib/prisma'
-
-export const dynamic = 'force-dynamic'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
 import ContactForm from '@/components/ContactForm'
+
+export const dynamic = 'force-dynamic'
 
 export const metadata = {
   title: 'Контакты',
