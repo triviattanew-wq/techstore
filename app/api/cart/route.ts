@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+
 import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth'
 import { prisma } from '@/lib/prisma'
@@ -80,3 +82,4 @@ export async function DELETE(request: NextRequest) {
   
   return NextResponse.json({ success: true })
 }
+

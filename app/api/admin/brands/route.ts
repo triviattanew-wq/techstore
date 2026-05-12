@@ -1,5 +1,9 @@
+export const dynamic = 'force-dynamic'
+
 import { NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
+
+export const dynamic = 'force-dynamic'
 
 export async function GET() {
   try {
@@ -19,3 +23,4 @@ export async function GET() {
     return NextResponse.json({ error: 'Failed to fetch brands' }, { status: 500 })
   }
 }
+
