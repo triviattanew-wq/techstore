@@ -142,20 +142,20 @@ export default async function HomePage() {
       <main className="flex-1">
         {/* Hero Banner */}
         {heroBanner && (
-          <section className="container-custom py-6 md:py-8">
+          <section className="container-custom py-4 md:py-6">
             <HeroBanner banner={heroBanner} />
           </section>
         )}
 
         {/* Categories */}
-        <section className="container-custom py-16 md:py-24 mt-12 md:mt-20">
-          <h2 className="section-title mb-8">Категории</h2>
+        <section className="container-custom py-8 md:py-12 mt-6 md:mt-8">
+          <h2 className="section-title mb-6">Категории</h2>
           <CategoryGrid categories={data.categories} />
         </section>
 
         {/* Featured Products */}
         {data.featuredProducts.length > 0 && (
-          <section className="container-custom py-16 md:py-24 mt-12 md:mt-20">
+          <section className="container-custom py-8 md:py-12 mt-6 md:mt-8">
             <ProductGrid 
               products={data.featuredProducts} 
               title="Популярные товары"
@@ -164,14 +164,14 @@ export default async function HomePage() {
         )}
 
         {/* Trade-in */}
-        <LazySection className="container-custom py-16 md:py-24 mt-12 md:mt-20">
+        <LazySection className="container-custom py-8 md:py-12 mt-6 md:mt-8">
           <TradeInBlock />
         </LazySection>
 
         {/* New Products */}
         {data.newProducts.length > 0 && (
           <LazySection 
-            className="container-custom py-16 md:py-24 mt-12 md:mt-20"
+            className="container-custom py-8 md:py-12 mt-6 md:mt-8"
             fallback={<ProductGridSkeleton count={8} />}
           >
             <ProductGrid 
@@ -182,14 +182,14 @@ export default async function HomePage() {
         )}
 
         {/* IMEI Check */}
-        <LazySection className="container-custom py-16 md:py-24 mt-12 md:mt-20">
+        <LazySection className="container-custom py-8 md:py-12 mt-6 md:mt-8">
           <ImeiCheckBlock />
         </LazySection>
 
         {/* Hit Products */}
         {data.hitProducts.length > 0 && (
           <LazySection 
-            className="container-custom py-16 md:py-24 mt-12 md:mt-20"
+            className="container-custom py-8 md:py-12 mt-6 md:mt-8"
             fallback={<ProductGridSkeleton count={8} />}
           >
             <ProductGrid 
@@ -200,20 +200,17 @@ export default async function HomePage() {
         )}
 
         {/* Features */}
-        <LazySection className="container-custom pt-20 md:pt-32 pb-20 md:pb-32 mt-20 md:mt-40">
+        <LazySection className="container-custom py-8 md:py-12 mt-6 md:mt-8">
           <Features />
         </LazySection>
 
-        {/* Пустое пространство для отступа */}
-        <div className="h-16 md:h-24"></div>
-
         {/* SEO Text */}
-        <section className="container-custom pt-0 pb-20 md:pb-32">
-          <div className="bg-gray-50 dark:bg-gray-900 rounded-2xl p-8 md:p-12 border border-gray-200 dark:border-gray-800">
-            <h2 className="text-xl md:text-2xl font-bold mb-6 text-gray-900 dark:text-white">
+        <section className="container-custom py-8 md:py-12">
+          <div className="bg-gray-50 rounded-2xl p-6 md:p-8 border border-gray-200">
+            <h2 className="text-xl md:text-2xl font-bold mb-6 text-gray-900">
               Интернет-магазин электроники TechStore
             </h2>
-            <div className="text-gray-600 dark:text-gray-400 space-y-4 text-sm md:text-base">
+            <div className="text-gray-600 space-y-4 text-sm md:text-base">
               <p>
                 TechStore — это современный интернет-магазин электроники и гаджетов, предлагающий широкий ассортимент оригинальной техники от ведущих мировых производителей. В нашем каталоге представлены смартфоны Apple iPhone, Samsung Galaxy, ноутбуки MacBook, iPad, а также разнообразные аксессуары и устройства для умного дома.
               </p>
@@ -228,7 +225,7 @@ export default async function HomePage() {
         </section>
       </main>
 
-      <footer className="mt-16 md:mt-24">
+      <footer className="mt-8 md:mt-12">
         <Footer />
       </footer>
     </div>

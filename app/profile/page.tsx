@@ -102,10 +102,10 @@ export default function ProfilePage() {
     return (
       <div className="min-h-screen flex flex-col">
         <Header />
-        <main className="flex-1 bg-gray-50 dark:bg-dark-50 py-12">
+        <main className="flex-1 bg-gray-50 py-12">
           <div className="container-custom">
             <div className="flex items-center justify-center h-64">
-              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900 dark:border-dark-900"></div>
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900"></div>
             </div>
           </div>
         </main>
@@ -118,7 +118,7 @@ export default function ProfilePage() {
     <div className="min-h-screen flex flex-col">
       <Header />
       
-      <main className="flex-1 bg-gray-50 dark:bg-dark-50 py-12">
+      <main className="flex-1 bg-gray-50 py-12">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto">
             <div className="mb-8">
@@ -131,8 +131,8 @@ export default function ProfilePage() {
               <div className="lg:col-span-1">
                 <div className="dark-card rounded-2xl p-6">
                   <div className="flex items-center gap-4 mb-6">
-                    <div className="w-16 h-16 bg-gray-100 dark:bg-dark-200 rounded-full flex items-center justify-center">
-                      <User className="w-8 h-8 text-gray-400 dark:text-dark-400" />
+                    <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center">
+                      <User className="w-8 h-8 text-gray-400" />
                     </div>
                     <div>
                       <h2 className="font-semibold dark-text">{profile?.name}</h2>
@@ -143,35 +143,35 @@ export default function ProfilePage() {
                   <nav className="space-y-2">
                     <Link
                       href="/profile"
-                      className="flex items-center gap-3 px-4 py-3 rounded-lg bg-gray-100 dark:bg-dark-200 text-gray-900 dark:text-dark-900"
+                      className="flex items-center gap-3 px-4 py-3 rounded-lg bg-gray-100 text-gray-900"
                     >
                       <User className="w-5 h-5" />
                       Профиль
                     </Link>
                     <Link
                       href="/profile/orders"
-                      className="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-600 dark:text-dark-600 hover:bg-gray-100 dark:hover:bg-dark-200 transition-colors"
+                      className="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors"
                     >
                       <Package className="w-5 h-5" />
                       Мои заявки
                     </Link>
                     <Link
                       href="/favorites"
-                      className="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-600 dark:text-dark-600 hover:bg-gray-100 dark:hover:bg-dark-200 transition-colors"
+                      className="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors"
                     >
                       <Heart className="w-5 h-5" />
                       Избранное
                     </Link>
                     <Link
                       href="/compare"
-                      className="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-600 dark:text-dark-600 hover:bg-gray-100 dark:hover:bg-dark-200 transition-colors"
+                      className="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors"
                     >
                       <Scale className="w-5 h-5" />
                       Сравнение
                     </Link>
                     <Link
                       href="/settings"
-                      className="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-600 dark:text-dark-600 hover:bg-gray-100 dark:hover:bg-dark-200 transition-colors"
+                      className="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors"
                     >
                       <Settings className="w-5 h-5" />
                       Настройки
@@ -188,7 +188,7 @@ export default function ProfilePage() {
                     {!editing ? (
                       <button
                         onClick={() => setEditing(true)}
-                        className="flex items-center gap-2 px-4 py-2 text-sm text-gray-600 dark:text-dark-600 hover:text-gray-900 dark:hover:text-dark-900"
+                        className="flex items-center gap-2 px-4 py-2 text-sm text-gray-600 hover:text-gray-900"
                       >
                         <Edit className="w-4 h-4" />
                         Редактировать
@@ -205,7 +205,7 @@ export default function ProfilePage() {
                         </button>
                         <button
                           onClick={handleCancel}
-                          className="flex items-center gap-2 px-4 py-2 text-sm text-gray-600 dark:text-dark-600 hover:text-gray-900 dark:hover:text-dark-900"
+                          className="flex items-center gap-2 px-4 py-2 text-sm text-gray-600 hover:text-gray-900"
                         >
                           <X className="w-4 h-4" />
                           Отмена
@@ -222,10 +222,10 @@ export default function ProfilePage() {
                           type="text"
                           value={formData.name}
                           onChange={(e) => setFormData({...formData, name: e.target.value})}
-                          className="w-full px-4 py-3 border dark-border rounded-xl bg-white dark:bg-dark-100 dark-text focus:outline-none focus:ring-2 focus:ring-primary-500"
+                          className="w-full px-4 py-3 border dark-border rounded-xl bg-white dark-text focus:outline-none focus:ring-2 focus:ring-primary-500"
                         />
                       ) : (
-                        <p className="px-4 py-3 bg-gray-50 dark:bg-dark-200 rounded-xl dark-text">
+                        <p className="px-4 py-3 bg-gray-50 rounded-xl dark-text">
                           {profile?.name || 'Не указано'}
                         </p>
                       )}
@@ -233,10 +233,10 @@ export default function ProfilePage() {
 
                     <div>
                       <label className="block text-sm font-medium mb-2 dark-text">Email</label>
-                      <p className="px-4 py-3 bg-gray-50 dark:bg-dark-200 rounded-xl dark-text">
+                      <p className="px-4 py-3 bg-gray-50 rounded-xl dark-text">
                         {profile?.email}
                       </p>
-                      <p className="text-xs text-gray-500 dark:text-dark-500 mt-1">
+                      <p className="text-xs text-gray-500 mt-1">
                         Email нельзя изменить
                       </p>
                     </div>
@@ -249,10 +249,10 @@ export default function ProfilePage() {
                           value={formData.phone}
                           onChange={(e) => setFormData({...formData, phone: e.target.value})}
                           placeholder="+7 (999) 123-45-67"
-                          className="w-full px-4 py-3 border dark-border rounded-xl bg-white dark:bg-dark-100 dark-text focus:outline-none focus:ring-2 focus:ring-primary-500"
+                          className="w-full px-4 py-3 border dark-border rounded-xl bg-white dark-text focus:outline-none focus:ring-2 focus:ring-primary-500"
                         />
                       ) : (
-                        <p className="px-4 py-3 bg-gray-50 dark:bg-dark-200 rounded-xl dark-text">
+                        <p className="px-4 py-3 bg-gray-50 rounded-xl dark-text">
                           {profile?.phone || 'Не указан'}
                         </p>
                       )}
@@ -260,7 +260,7 @@ export default function ProfilePage() {
 
                     <div>
                       <label className="block text-sm font-medium mb-2 dark-text">Дата регистрации</label>
-                      <p className="px-4 py-3 bg-gray-50 dark:bg-dark-200 rounded-xl dark-text">
+                      <p className="px-4 py-3 bg-gray-50 rounded-xl dark-text">
                         {profile?.createdAt ? new Date(profile.createdAt).toLocaleDateString('ru-RU') : 'Не указана'}
                       </p>
                     </div>
@@ -274,7 +274,7 @@ export default function ProfilePage() {
                     className="dark-card rounded-2xl p-6 hover:shadow-md transition-shadow"
                   >
                     <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 bg-primary-100 dark:bg-primary-900/20 rounded-lg flex items-center justify-center">
+                      <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
                         <Package className="w-6 h-6 text-primary-600" />
                       </div>
                       <div>
@@ -289,7 +289,7 @@ export default function ProfilePage() {
                     className="dark-card rounded-2xl p-6 hover:shadow-md transition-shadow"
                   >
                     <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 bg-red-100 dark:bg-red-900/20 rounded-lg flex items-center justify-center">
+                      <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center">
                         <Heart className="w-6 h-6 text-red-600" />
                       </div>
                       <div>

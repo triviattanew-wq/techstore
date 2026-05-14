@@ -14,7 +14,7 @@ export const LoadingSkeleton = memo(function LoadingSkeleton({
   variant = 'text', 
   count = 1 
 }: LoadingSkeletonProps) {
-  const baseClasses = 'animate-pulse bg-gray-200 dark:bg-dark-200 rounded'
+  const baseClasses = 'animate-pulse bg-gray-200 rounded'
   
   const variants = {
     product: 'aspect-square',

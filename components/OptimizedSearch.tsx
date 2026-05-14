@@ -85,7 +85,7 @@ export function OptimizedSearch({
       ...result,
       highlightedName: result.name.replace(
         new RegExp(`(${query})`, 'gi'),
-        '<mark class="bg-yellow-200 dark:bg-yellow-800">$1</mark>'
+        '<mark class="bg-yellow-200">$1</mark>'
       )
     }))
   }, [results, query])
@@ -99,7 +99,7 @@ export function OptimizedSearch({
           value={query}
           onChange={handleInputChange}
           placeholder={placeholder}
-          className="w-full pl-10 pr-10 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:bg-dark-100 dark:border-dark-300"
+          className="w-full pl-10 pr-10 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
         />
         {query && (
           <button
@@ -112,7 +112,7 @@ export function OptimizedSearch({
       </div>
 
       {isOpen && (
-        <div className="absolute top-full left-0 right-0 mt-1 bg-white dark:bg-dark-100 border border-gray-200 dark:border-dark-300 rounded-lg shadow-lg z-50 max-h-96 overflow-y-auto">
+        <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-50 max-h-96 overflow-y-auto">
           {isLoading ? (
             <div className="p-4 text-center text-gray-500">
               Поиск...
@@ -123,7 +123,7 @@ export function OptimizedSearch({
                 <button
                   key={result.id}
                   onClick={() => handleResultClick(result)}
-                  className="w-full px-4 py-3 text-left hover:bg-gray-50 dark:hover:bg-dark-200 flex items-center gap-3"
+                  className="w-full px-4 py-3 text-left hover:bg-gray-50 flex items-center gap-3"
                 >
                   {result.image && (
                     <img

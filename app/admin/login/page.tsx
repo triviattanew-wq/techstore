@@ -114,12 +114,6 @@ export default function AdminLoginPage() {
             {message}
           </div>
         )}
-
-        <div className="mt-6 p-4 bg-gray-50 rounded-lg">
-          <p className="text-sm text-gray-600 mb-2">Данные для входа:</p>
-          <p className="text-sm font-mono text-gray-800">Email: admin@techstore.ru</p>
-          <p className="text-sm font-mono text-gray-800">Пароль: admin123</p>
-        </div>
       </div>
     </div>
   )

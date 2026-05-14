@@ -43,11 +43,11 @@ const statusLabels: Record<string, string> = {
 }
 
 const statusColors: Record<string, string> = {
-  NEW: 'bg-blue-100 dark:bg-blue-900/20 text-blue-800 dark:text-blue-200',
-  IN_PROGRESS: 'bg-yellow-100 dark:bg-yellow-900/20 text-yellow-800 dark:text-yellow-200',
-  CONFIRMED: 'bg-green-100 dark:bg-green-900/20 text-green-800 dark:text-green-200',
-  CANCELLED: 'bg-red-100 dark:bg-red-900/20 text-red-800 dark:text-red-200',
-  COMPLETED: 'bg-gray-100 dark:bg-gray-900/20 text-gray-800 dark:text-gray-200',
+  NEW: 'bg-blue-100 text-blue-800',
+  IN_PROGRESS: 'bg-yellow-100 text-yellow-800',
+  CONFIRMED: 'bg-green-100 text-green-800',
+  CANCELLED: 'bg-red-100 text-red-800',
+  COMPLETED: 'bg-gray-100 text-gray-800',
 }
 
 const statusIcons: Record<string, any> = {
@@ -95,10 +95,10 @@ export default function OrdersPage() {
     return (
       <div className="min-h-screen flex flex-col">
         <Header />
-        <main className="flex-1 bg-gray-50 dark:bg-dark-50 py-12">
+        <main className="flex-1 bg-gray-50 py-12">
           <div className="container-custom">
             <div className="flex items-center justify-center h-64">
-              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900 dark:border-dark-900"></div>
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900"></div>
             </div>
           </div>
         </main>
@@ -111,13 +111,13 @@ export default function OrdersPage() {
     <div className="min-h-screen flex flex-col">
       <Header />
       
-      <main className="flex-1 bg-gray-50 dark:bg-dark-50 py-12">
+      <main className="flex-1 bg-gray-50 py-12">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto">
             <div className="mb-8">
               <Link
                 href="/profile"
-                className="inline-flex items-center gap-2 text-gray-600 dark:text-dark-600 hover:text-gray-900 dark:hover:text-dark-900 mb-4"
+                className="inline-flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-4"
               >
                 <ArrowLeft className="w-4 h-4" />
                 Назад в профиль
@@ -138,35 +138,35 @@ export default function OrdersPage() {
                   <nav className="space-y-2">
                     <Link
                       href="/profile"
-                      className="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-600 dark:text-dark-600 hover:bg-gray-100 dark:hover:bg-dark-200 transition-colors"
+                      className="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors"
                     >
                       <User className="w-5 h-5" />
                       Профиль
                     </Link>
                     <Link
                       href="/profile/orders"
-                      className="flex items-center gap-3 px-4 py-3 rounded-lg bg-gray-100 dark:bg-dark-200 text-gray-900 dark:text-dark-900"
+                      className="flex items-center gap-3 px-4 py-3 rounded-lg bg-gray-100 text-gray-900"
                     >
                       <Package className="w-5 h-5" />
                       Мои заявки
                     </Link>
                     <Link
                       href="/favorites"
-                      className="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-600 dark:text-dark-600 hover:bg-gray-100 dark:hover:bg-dark-200 transition-colors"
+                      className="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors"
                     >
                       <Heart className="w-5 h-5" />
                       Избранное
                     </Link>
                     <Link
                       href="/compare"
-                      className="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-600 dark:text-dark-600 hover:bg-gray-100 dark:hover:bg-dark-200 transition-colors"
+                      className="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors"
                     >
                       <Scale className="w-5 h-5" />
                       Сравнение
                     </Link>
                     <Link
                       href="/settings"
-                      className="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-600 dark:text-dark-600 hover:bg-gray-100 dark:hover:bg-dark-200 transition-colors"
+                      className="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors"
                     >
                       <Settings className="w-5 h-5" />
                       Настройки
@@ -179,11 +179,11 @@ export default function OrdersPage() {
               <div className="lg:col-span-3">
                 {orders.length === 0 ? (
                   <div className="text-center py-16">
-                    <div className="w-24 h-24 bg-gray-100 dark:bg-dark-200 rounded-full flex items-center justify-center mx-auto mb-6">
-                      <Package className="w-12 h-12 text-gray-400 dark:text-dark-400" />
+                    <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                      <Package className="w-12 h-12 text-gray-400" />
                     </div>
                     <h2 className="text-xl font-semibold mb-2 dark-text">Пока нет заявок</h2>
-                    <p className="text-gray-600 dark:text-dark-600 mb-6">
+                    <p className="text-gray-600 mb-6">
                       Оформите первый заказ в нашем каталоге
                     </p>
                     <Link href="/catalog" className="btn-primary">
@@ -227,8 +227,8 @@ export default function OrdersPage() {
                           {/* Order items */}
                           <div className="space-y-3 mb-4">
                             {order.items.map((item) => (
-                              <div key={item.id} className="flex items-center gap-4 p-3 bg-gray-50 dark:bg-dark-200 rounded-lg">
-                                <div className="w-16 h-16 bg-gray-100 dark:bg-dark-300 rounded-lg overflow-hidden flex-shrink-0">
+                              <div key={item.id} className="flex items-center gap-4 p-3 bg-gray-50 rounded-lg">
+                                <div className="w-16 h-16 bg-gray-100 rounded-lg overflow-hidden flex-shrink-0">
                                   {item.product.images[0]?.url ? (
                                     // eslint-disable-next-line @next/next/no-img-element
                                     <img
@@ -239,7 +239,7 @@ export default function OrdersPage() {
                                     />
                                   ) : (
                                     <div className="w-full h-full flex items-center justify-center">
-                                      <Package className="w-6 h-6 text-gray-400 dark:text-dark-400" />
+                                      <Package className="w-6 h-6 text-gray-400" />
                                     </div>
                                   )}
                                 </div>

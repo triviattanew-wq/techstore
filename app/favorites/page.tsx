@@ -91,10 +91,10 @@ export default function FavoritesPage() {
     return (
       <div className="min-h-screen flex flex-col">
         <Header />
-        <main className="flex-1 bg-gray-50 dark:bg-dark-50 py-12">
+        <main className="flex-1 bg-gray-50 py-12">
           <div className="container-custom">
             <div className="flex items-center justify-center h-64">
-              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900 dark:border-dark-900"></div>
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900"></div>
             </div>
           </div>
         </main>
@@ -107,7 +107,7 @@ export default function FavoritesPage() {
     <div className="min-h-screen flex flex-col">
       <Header />
       
-      <main className="flex-1 bg-gray-50 dark:bg-dark-50 py-12">
+      <main className="flex-1 bg-gray-50 py-12">
         <div className="container-custom">
           <div className="mb-8">
             <h1 className="text-3xl font-bold mb-2 dark-text">Избранное</h1>
@@ -121,11 +121,11 @@ export default function FavoritesPage() {
 
           {favorites.length === 0 ? (
             <div className="text-center py-16">
-              <div className="w-24 h-24 bg-gray-100 dark:bg-dark-200 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Heart className="w-12 h-12 text-gray-400 dark:text-dark-400" />
+              <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Heart className="w-12 h-12 text-gray-400" />
               </div>
               <h2 className="text-xl font-semibold mb-2 dark-text">Избранное пусто</h2>
-              <p className="text-gray-600 dark:text-dark-600 mb-6">
+              <p className="text-gray-600 mb-6">
                 Добавляйте товары в избранное, чтобы не потерять их
               </p>
               <Link href="/catalog" className="btn-primary">
@@ -138,7 +138,7 @@ export default function FavoritesPage() {
                 <div key={item.id} className="dark-card rounded-2xl p-4 group">
                   <div className="relative mb-4">
                     <Link href={`/product/${item.product.slug}`}>
-                      <div className="aspect-square bg-gray-100 dark:bg-dark-200 rounded-xl overflow-hidden">
+                      <div className="aspect-square bg-gray-100 rounded-xl overflow-hidden">
                         {item.product.images[0]?.url ? (
                           // eslint-disable-next-line @next/next/no-img-element
                           <img
@@ -149,14 +149,14 @@ export default function FavoritesPage() {
                           />
                         ) : (
                           <div className="w-full h-full flex items-center justify-center">
-                            <Package className="w-16 h-16 text-gray-400 dark:text-dark-400" />
+                            <Package className="w-16 h-16 text-gray-400" />
                           </div>
                         )}
                       </div>
                     </Link>
                     <button
                       onClick={() => removeFromFavorites(item.productId)}
-                      className="absolute top-3 right-3 p-2 bg-white dark:bg-dark-100 rounded-full shadow-md hover:bg-red-50 dark:hover:bg-red-900/20 text-red-500 transition-colors"
+                      className="absolute top-3 right-3 p-2 bg-white rounded-full shadow-md hover:bg-red-50 text-red-500 transition-colors"
                     >
                       <X className="w-4 h-4" />
                     </button>
@@ -165,7 +165,7 @@ export default function FavoritesPage() {
                   <div className="space-y-3">
                     <div>
                       {item.product.brand && (
-                        <p className="text-sm text-gray-500 dark:text-dark-500">{item.product.brand.name}</p>
+                        <p className="text-sm text-gray-500">{item.product.brand.name}</p>
                       )}
                       <Link href={`/product/${item.product.slug}`}>
                         <h3 className="font-medium dark-text hover:text-primary-600 transition-colors line-clamp-2">
@@ -177,7 +177,7 @@ export default function FavoritesPage() {
                     {item.product.variants.length > 0 && (
                       <div className="flex flex-wrap gap-1">
                         {item.product.variants.slice(0, 3).map((variant, index) => (
-                          <span key={index} className="text-xs bg-gray-100 dark:bg-dark-200 px-2 py-1 rounded">
+                          <span key={index} className="text-xs bg-gray-100 px-2 py-1 rounded">
                             {variant.color || variant.memory}
                           </span>
                         ))}
@@ -189,7 +189,7 @@ export default function FavoritesPage() {
                         {formatPrice(item.product.price)}
                       </span>
                       {item.product.oldPrice && (
-                        <span className="text-sm text-gray-400 dark:text-dark-400 line-through">
+                        <span className="text-sm text-gray-400 line-through">
                           {formatPrice(item.product.oldPrice)}
                         </span>
                       )}

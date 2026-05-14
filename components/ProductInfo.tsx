@@ -1,7 +1,8 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+import { useSession } from 'next-auth/react'
 import { Heart, Scale, Share2, Check, ShoppingCart } from 'lucide-react'
 import { formatPrice, cn } from '@/lib/utils'
 import { useCart } from '@/lib/cart-context'
@@ -36,10 +37,13 @@ interface ProductInfoProps {
 
 export function ProductInfo({ product }: ProductInfoProps) {
   const router = useRouter()
+  const { data: session } = useSession()
   const { addItem } = useCart()
   const [selectedVariant, setSelectedVariant] = useState(product.variants[0]?.id || null)
   const [isAddingToCart, setIsAddingToCart] = useState(false)
   const [showOneClick, setShowOneClick] = useState(false)
+  const [isFavorite, setIsFavorite] = useState(false)
+  const [isInCompare, setIsInCompare] = useState(false)
 
   const selectedVariantData = product.variants.find(v => v.id === selectedVariant)
   const currentPrice = selectedVariantData?.price || product.price
@@ -73,6 +77,40 @@ export function ProductInfo({ product }: ProductInfoProps) {
     product.variants.filter(v => v.simType).map(v => v.simType!)
   ))
 
+  // Check if product is in favorites or compare on mount
+  useEffect(() => {
+    if (session) {
+      checkFavoriteStatus()
+      checkCompareStatus()
+    }
+  }, [session, product.id])
+
+  const checkFavoriteStatus = async () => {
+    try {
+      const res = await fetch('/api/favorites')
+      if (res.ok) {
+        const data = await res.json()
+        const isInFavorites = data.favorites?.some((fav: any) => fav.productId === product.id)
+        setIsFavorite(isInFavorites)
+      }
+    } catch (error) {
+      // Ignore error
+    }
+  }
+
+  const checkCompareStatus = async () => {
+    try {
+      const res = await fetch('/api/compare')
+      if (res.ok) {
+        const data = await res.json()
+        const isInCompareList = data.compareItems?.some((item: any) => item.productId === product.id)
+        setIsInCompare(isInCompareList)
+      }
+    } catch (error) {
+      // Ignore error
+    }
+  }
+
   const handleAddToCart = async () => {
     setIsAddingToCart(true)
     try {
@@ -104,6 +142,99 @@ export function ProductInfo({ product }: ProductInfoProps) {
       }
     } catch (error) {
       toast.error('Ошибка при отправке заявки')
+    }
+  }
+
+  const handleAddToFavorites = async () => {
+    if (!session) {
+      toast.error('Войдите, чтобы добавить в избранное')
+      router.push('/login?callbackUrl=' + window.location.pathname)
+      return
+    }
+
+    try {
+      if (isFavorite) {
+        // Remove from favorites
+        const res = await fetch(`/api/favorites/${product.id}`, {
+          method: 'DELETE',
+        })
+        if (res.ok) {
+          setIsFavorite(false)
+          toast.success('Удалено из избранного')
+        }
+      } else {
+        // Add to favorites
+        const res = await fetch('/api/favorites', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ productId: product.id }),
+        })
+        if (res.ok) {
+          setIsFavorite(true)
+          toast.success('Добавлено в избранное')
+        }
+      }
+    } catch (error) {
+      toast.error('Ошибка при добавлении в избранное')
+    }
+  }
+
+  const handleAddToCompare = async () => {
+    if (!session) {
+      toast.error('Войдите, чтобы добавить к сравнению')
+      router.push('/login?callbackUrl=' + window.location.pathname)
+      return
+    }
+
+    try {
+      if (isInCompare) {
+        // Remove from compare
+        const res = await fetch(`/api/compare/${product.id}`, {
+          method: 'DELETE',
+        })
+        if (res.ok) {
+          setIsInCompare(false)
+          toast.success('Удалено из сравнения')
+        }
+      } else {
+        // Add to compare
+        const res = await fetch('/api/compare', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ productId: product.id }),
+        })
+        if (res.ok) {
+          setIsInCompare(true)
+          toast.success('Добавлено к сравнению')
+        }
+      }
+    } catch (error) {
+      toast.error('Ошибка при добавлении к сравнению')
+    }
+  }
+
+  const handleShare = async () => {
+    const url = window.location.href
+    
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: product.name,
+          text: product.shortDesc || `Купить ${product.name} в TechStore`,
+          url: url,
+        })
+        toast.success('Ссылка отправлена')
+      } catch (error) {
+        // User cancelled share
+      }
+    } else {
+      // Fallback: copy to clipboard
+      try {
+        await navigator.clipboard.writeText(url)
+        toast.success('Ссылка скопирована в буфер обмена')
+      } catch (error) {
+        toast.error('Не удалось скопировать ссылку')
+      }
     }
   }
 
@@ -251,15 +382,34 @@ export function ProductInfo({ product }: ProductInfoProps) {
 
       {/* Secondary Actions */}
       <div className="flex items-center gap-4">
-        <button className="flex items-center gap-2 text-gray-600 hover:text-gray-900 text-sm">
-          <Heart className="w-5 h-5" />
-          В избранное
+        <button 
+          onClick={handleAddToFavorites}
+          className={cn(
+            "flex items-center gap-2 text-sm transition-colors",
+            isFavorite 
+              ? "text-red-600 hover:text-red-700" 
+              : "text-gray-600 hover:text-gray-900"
+          )}
+        >
+          <Heart className={cn("w-5 h-5", isFavorite && "fill-current")} />
+          {isFavorite ? 'В избранном' : 'В избранное'}
         </button>
-        <button className="flex items-center gap-2 text-gray-600 hover:text-gray-900 text-sm">
+        <button 
+          onClick={handleAddToCompare}
+          className={cn(
+            "flex items-center gap-2 text-sm transition-colors",
+            isInCompare 
+              ? "text-primary-600 hover:text-primary-700" 
+              : "text-gray-600 hover:text-gray-900"
+          )}
+        >
           <Scale className="w-5 h-5" />
-          Сравнить
+          {isInCompare ? 'В сравнении' : 'Сравнить'}
         </button>
-        <button className="flex items-center gap-2 text-gray-600 hover:text-gray-900 text-sm">
+        <button 
+          onClick={handleShare}
+          className="flex items-center gap-2 text-gray-600 hover:text-gray-900 text-sm transition-colors"
+        >
           <Share2 className="w-5 h-5" />
           Поделиться
         </button>

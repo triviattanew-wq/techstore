@@ -22,14 +22,12 @@ import {
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useCart } from '@/lib/cart-context'
-import { ThemeToggle } from './ThemeToggle'
 
 const categories = [
   { name: 'iPhone', slug: 'iphone' },
   { name: 'iPad', slug: 'ipad' },
   { name: 'MacBook', slug: 'macbook' },
   { name: 'AirPods', slug: 'airpods' },
-  { name: 'Apple Watch', slug: 'apple-watch' },
   { name: 'Аксессуары', slug: 'accessories' },
 ]
 
@@ -47,13 +45,13 @@ export function Header() {
   }, [pathname])
 
   return (
-    <header className="sticky top-0 z-50 bg-white dark:bg-dark-100 border-b border-gray-100 dark:border-dark-200 transition-colors duration-200">
+    <header className="sticky top-0 z-50 bg-white border-b border-gray-100 transition-colors duration-200">
       {/* Top bar */}
-      <div className="hidden md:block bg-gray-50 dark:bg-dark-200 border-b border-gray-100 dark:border-dark-300">
+      <div className="hidden md:block bg-gray-50 border-b border-gray-100">
         <div className="container-custom">
-          <div className="flex items-center justify-between h-10 text-sm text-gray-600 dark:text-dark-600">
+          <div className="flex items-center justify-between h-10 text-sm text-gray-600">
             <div className="flex items-center gap-6">
-              <a href="tel:+78001234567" className="flex items-center gap-1.5 hover:text-gray-900 dark:hover:text-dark-900">
+              <a href="tel:+78001234567" className="flex items-center gap-1.5 hover:text-gray-900">
                 <Phone className="w-3.5 h-3.5" />
                 <span>8 (800) 123-45-67</span>
               </a>
@@ -67,9 +65,9 @@ export function Header() {
               </span>
             </div>
             <div className="flex items-center gap-4">
-              <Link href="/delivery" className="hover:text-gray-900 dark:hover:text-dark-900">Доставка</Link>
-              <Link href="/warranty" className="hover:text-gray-900 dark:hover:text-dark-900">Гарантия</Link>
-              <Link href="/trade-in" className="hover:text-gray-900 dark:hover:text-dark-900">Trade-in</Link>
+              <Link href="/delivery" className="hover:text-gray-900">Доставка</Link>
+              <Link href="/warranty" className="hover:text-gray-900">Гарантия</Link>
+              <Link href="/trade-in" className="hover:text-gray-900">Trade-in</Link>
             </div>
           </div>
         </div>
@@ -124,19 +122,16 @@ export function Header() {
           <div className="flex items-center gap-1 md:gap-2">
             {/* Search */}
             <button
-              className="p-2 md:p-2.5 text-gray-600 dark:text-dark-600 hover:text-gray-900 dark:hover:text-dark-900 hover:bg-gray-100 dark:hover:bg-dark-200 rounded-full transition-colors"
+              className="p-2 md:p-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-full transition-colors"
               onClick={() => setIsSearchOpen(!isSearchOpen)}
             >
               <Search className="w-5 h-5" />
             </button>
 
-            {/* Theme toggle */}
-            <ThemeToggle />
-
             {/* Favorites */}
             <Link
               href="/favorites"
-              className="hidden md:flex p-2.5 text-gray-600 dark:text-dark-600 hover:text-gray-900 dark:hover:text-dark-900 hover:bg-gray-100 dark:hover:bg-dark-200 rounded-full transition-colors"
+              className="hidden md:flex p-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-full transition-colors"
             >
               <Heart className="w-5 h-5" />
             </Link>
@@ -144,7 +139,7 @@ export function Header() {
             {/* Compare */}
             <Link
               href="/compare"
-              className="hidden md:flex p-2.5 text-gray-600 dark:text-dark-600 hover:text-gray-900 dark:hover:text-dark-900 hover:bg-gray-100 dark:hover:bg-dark-200 rounded-full transition-colors"
+              className="hidden md:flex p-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-full transition-colors"
             >
               <Scale className="w-5 h-5" />
             </Link>
@@ -152,7 +147,7 @@ export function Header() {
             {/* Cart */}
             <Link
               href="/cart"
-              className="relative p-2 md:p-2.5 text-gray-600 dark:text-dark-600 hover:text-gray-900 dark:hover:text-dark-900 hover:bg-gray-100 dark:hover:bg-dark-200 rounded-full transition-colors"
+              className="relative p-2 md:p-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-full transition-colors"
             >
               <ShoppingCart className="w-5 h-5" />
               {totalItems > 0 && (
@@ -165,35 +160,35 @@ export function Header() {
             {/* User */}
             {session ? (
               <div className="relative group">
-                <button className="p-2 md:p-2.5 text-gray-600 dark:text-dark-600 hover:text-gray-900 dark:hover:text-dark-900 hover:bg-gray-100 dark:hover:bg-dark-200 rounded-full transition-colors">
+                <button className="p-2 md:p-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-full transition-colors">
                   <User className="w-5 h-5" />
                 </button>
                 <div className="absolute top-full right-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
-                  <div className="bg-white dark:bg-dark-100 rounded-2xl shadow-xl border border-gray-100 dark:border-dark-200 py-2 min-w-[200px]">
-                    <div className="px-4 py-2 border-b border-gray-100 dark:border-dark-200">
-                      <p className="text-sm font-medium text-gray-900 dark:text-dark-900">{session.user?.name}</p>
-                      <p className="text-xs text-gray-500 dark:text-dark-500">{session.user?.email}</p>
+                  <div className="bg-white rounded-2xl shadow-xl border border-gray-100 py-2 min-w-[200px]">
+                    <div className="px-4 py-2 border-b border-gray-100">
+                      <p className="text-sm font-medium text-gray-900">{session.user?.name}</p>
+                      <p className="text-xs text-gray-500">{session.user?.email}</p>
                     </div>
-                    <Link href="/profile" className="flex items-center gap-3 px-4 py-2 text-sm text-gray-600 dark:text-dark-600 hover:text-gray-900 dark:hover:text-dark-900 hover:bg-gray-50 dark:hover:bg-dark-200">
+                    <Link href="/profile" className="flex items-center gap-3 px-4 py-2 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50">
                       <User className="w-4 h-4" />
                       Личный кабинет
                     </Link>
-                    <Link href="/profile/orders" className="flex items-center gap-3 px-4 py-2 text-sm text-gray-600 dark:text-dark-600 hover:text-gray-900 dark:hover:text-dark-900 hover:bg-gray-50 dark:hover:bg-dark-200">
+                    <Link href="/profile/orders" className="flex items-center gap-3 px-4 py-2 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50">
                       <Package className="w-4 h-4" />
                       Мои заявки
                     </Link>
-                    <Link href="/favorites" className="flex items-center gap-3 px-4 py-2 text-sm text-gray-600 dark:text-dark-600 hover:text-gray-900 dark:hover:text-dark-900 hover:bg-gray-50 dark:hover:bg-dark-200">
+                    <Link href="/favorites" className="flex items-center gap-3 px-4 py-2 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50">
                       <Heart className="w-4 h-4" />
                       Избранное
                     </Link>
-                    <Link href="/settings" className="flex items-center gap-3 px-4 py-2 text-sm text-gray-600 dark:text-dark-600 hover:text-gray-900 dark:hover:text-dark-900 hover:bg-gray-50 dark:hover:bg-dark-200">
+                    <Link href="/settings" className="flex items-center gap-3 px-4 py-2 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50">
                       <Settings className="w-4 h-4" />
                       Настройки
                     </Link>
-                    <hr className="my-2 border-gray-100 dark:border-dark-200" />
+                    <hr className="my-2 border-gray-100" />
                     <button
                       onClick={() => signOut()}
-                      className="flex items-center gap-3 w-full text-left px-4 py-2 text-sm text-gray-600 dark:text-dark-600 hover:text-gray-900 dark:hover:text-dark-900 hover:bg-gray-50 dark:hover:bg-dark-200"
+                      className="flex items-center gap-3 w-full text-left px-4 py-2 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50"
                     >
                       <LogOut className="w-4 h-4" />
                       Выйти
@@ -204,7 +199,7 @@ export function Header() {
             ) : (
               <Link
                 href="/login"
-                className="hidden md:flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-600 dark:text-dark-600 hover:text-gray-900 dark:hover:text-dark-900"
+                className="hidden md:flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-900"
               >
                 <User className="w-5 h-5" />
                 <span>Войти</span>

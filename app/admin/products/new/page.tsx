@@ -224,7 +224,7 @@ export default function NewProductPage() {
         price: parseFloat(formData.price),
         oldPrice: formData.oldPrice ? parseFloat(formData.oldPrice) : null,
         images: images.filter(img => img.url.trim()).map(img => img.url),
-        variants: variants.filter(v => v.color || v.memory).map(v => ({
+        variants: variants.filter(v => v.color || v.memory || v.simType || v.price).map(v => ({
           color: v.color || null,
           colorCode: v.colorCode || null,
           memory: v.memory || null,

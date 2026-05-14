@@ -80,7 +80,7 @@ function SearchContent() {
     <div className="min-h-screen flex flex-col">
       <Header />
       
-      <main className="flex-1 bg-gray-50 dark:bg-dark-50 py-8">
+      <main className="flex-1 bg-gray-50 py-8">
         <div className="container-custom">
           {/* Search header */}
           <div className="mb-8">
@@ -97,11 +97,11 @@ function SearchContent() {
           {!query ? (
             /* Empty state */
             <div className="text-center py-16">
-              <div className="w-24 h-24 bg-gray-100 dark:bg-dark-200 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Search className="w-12 h-12 text-gray-400 dark:text-dark-400" />
+              <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Search className="w-12 h-12 text-gray-400" />
               </div>
               <h2 className="text-xl font-semibold mb-2 dark-text">Введите запрос для поиска</h2>
-              <p className="text-gray-600 dark:text-dark-600 mb-6">
+              <p className="text-gray-600 mb-6">
                 Найдите нужный товар среди тысяч позиций
               </p>
               <Link href="/catalog" className="btn-primary">
@@ -128,14 +128,14 @@ function SearchContent() {
                           placeholder="От"
                           value={filters.minPrice}
                           onChange={(e) => setFilters({...filters, minPrice: e.target.value})}
-                          className="px-3 py-2 border dark-border rounded-lg text-sm bg-white dark:bg-dark-100 dark-text"
+                          className="px-3 py-2 border dark-border rounded-lg text-sm bg-white dark-text"
                         />
                         <input
                           type="number"
                           placeholder="До"
                           value={filters.maxPrice}
                           onChange={(e) => setFilters({...filters, maxPrice: e.target.value})}
-                          className="px-3 py-2 border dark-border rounded-lg text-sm bg-white dark:bg-dark-100 dark-text"
+                          className="px-3 py-2 border dark-border rounded-lg text-sm bg-white dark-text"
                         />
                       </div>
                     </div>
@@ -146,7 +146,7 @@ function SearchContent() {
                       <select
                         value={filters.brand}
                         onChange={(e) => setFilters({...filters, brand: e.target.value})}
-                        className="w-full px-3 py-2 border dark-border rounded-lg text-sm bg-white dark:bg-dark-100 dark-text"
+                        className="w-full px-3 py-2 border dark-border rounded-lg text-sm bg-white dark-text"
                       >
                         <option value="">Все бренды</option>
                         <option value="apple">Apple</option>
@@ -174,7 +174,7 @@ function SearchContent() {
                     <select
                       value={sortBy}
                       onChange={(e) => setSortBy(e.target.value)}
-                      className="px-3 py-2 border dark-border rounded-lg text-sm bg-white dark:bg-dark-100 dark-text"
+                      className="px-3 py-2 border dark-border rounded-lg text-sm bg-white dark-text"
                     >
                       {sortOptions.map(option => (
                         <option key={option.value} value={option.value}>
@@ -187,13 +187,13 @@ function SearchContent() {
                   <div className="flex items-center gap-2">
                     <button
                       onClick={() => setViewMode('grid')}
-                      className={`p-2 rounded-lg ${viewMode === 'grid' ? 'bg-gray-100 dark:bg-dark-200' : ''}`}
+                      className={`p-2 rounded-lg ${viewMode === 'grid' ? 'bg-gray-100' : ''}`}
                     >
                       <Grid className="w-5 h-5" />
                     </button>
                     <button
                       onClick={() => setViewMode('list')}
-                      className={`p-2 rounded-lg ${viewMode === 'list' ? 'bg-gray-100 dark:bg-dark-200' : ''}`}
+                      className={`p-2 rounded-lg ${viewMode === 'list' ? 'bg-gray-100' : ''}`}
                     >
                       <List className="w-5 h-5" />
                     </button>
@@ -203,15 +203,15 @@ function SearchContent() {
                 {/* Products */}
                 {loading ? (
                   <div className="flex items-center justify-center h-64">
-                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900 dark:border-dark-900"></div>
+                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900"></div>
                   </div>
                 ) : products.length === 0 ? (
                   <div className="text-center py-16">
-                    <div className="w-24 h-24 bg-gray-100 dark:bg-dark-200 rounded-full flex items-center justify-center mx-auto mb-6">
-                      <Package className="w-12 h-12 text-gray-400 dark:text-dark-400" />
+                    <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                      <Package className="w-12 h-12 text-gray-400" />
                     </div>
                     <h2 className="text-xl font-semibold mb-2 dark-text">Ничего не найдено</h2>
-                    <p className="text-gray-600 dark:text-dark-600 mb-6">
+                    <p className="text-gray-600 mb-6">
                       Попробуйте изменить поисковый запрос или фильтры
                     </p>
                     <Link href="/catalog" className="btn-primary">
@@ -228,7 +228,7 @@ function SearchContent() {
                         <ProductCard key={product.id} product={product} />
                       ) : (
                         <div key={product.id} className="dark-card rounded-2xl p-4 flex gap-4">
-                          <div className="w-24 h-24 bg-gray-100 dark:bg-dark-200 rounded-lg overflow-hidden flex-shrink-0">
+                          <div className="w-24 h-24 bg-gray-100 rounded-lg overflow-hidden flex-shrink-0">
                             {product.images[0]?.url ? (
                               // eslint-disable-next-line @next/next/no-img-element
                               <img
@@ -239,7 +239,7 @@ function SearchContent() {
                               />
                             ) : (
                               <div className="w-full h-full flex items-center justify-center">
-                                <Package className="w-8 h-8 text-gray-400 dark:text-dark-400" />
+                                <Package className="w-8 h-8 text-gray-400" />
                               </div>
                             )}
                           </div>
@@ -247,7 +247,7 @@ function SearchContent() {
                             <div className="flex items-start justify-between">
                               <div>
                                 {product.brand && (
-                                  <p className="text-sm text-gray-500 dark:text-dark-500">{product.brand.name}</p>
+                                  <p className="text-sm text-gray-500">{product.brand.name}</p>
                                 )}
                                 <Link href={`/product/${product.slug}`}>
                                   <h3 className="font-medium dark-text hover:text-primary-600 transition-colors line-clamp-2">
@@ -255,7 +255,7 @@ function SearchContent() {
                                   </h3>
                                 </Link>
                                 {product.variants.length > 0 && (
-                                  <p className="text-sm text-gray-500 dark:text-dark-500 mt-1">
+                                  <p className="text-sm text-gray-500 mt-1">
                                     {product.variants.map(v => v.color || v.memory).filter(Boolean).slice(0, 2).join(', ')}
                                   </p>
                                 )}
@@ -266,7 +266,7 @@ function SearchContent() {
                                     {formatPrice(product.price)}
                                   </span>
                                   {product.oldPrice && (
-                                    <span className="text-sm text-gray-400 dark:text-dark-400 line-through">
+                                    <span className="text-sm text-gray-400 line-through">
                                       {formatPrice(product.oldPrice)}
                                     </span>
                                   )}

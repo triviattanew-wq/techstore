@@ -110,7 +110,8 @@ export default function EditProductPage() {
         })
         
         setImages(productData.images.map((img: any) => img.url))
-        setVariants(productData.variants.map((variant: any) => ({
+        
+        const loadedVariants = productData.variants.map((variant: any) => ({
           id: variant.id,
           color: variant.color || '',
           colorCode: variant.colorCode || '',
@@ -118,7 +119,11 @@ export default function EditProductPage() {
           simType: variant.simType || '',
           price: variant.price?.toString() || '',
           stock: variant.stock || 0
-        })))
+        }))
+        
+        setVariants(loadedVariants.length > 0 ? loadedVariants : [
+          { id: '', color: '', colorCode: '', memory: '', simType: '', price: '', stock: 0 }
+        ])
         setCharacteristics(productData.characteristics.map((char: any) => ({
           id: char.id,
           name: char.name,
@@ -199,7 +204,7 @@ export default function EditProductPage() {
         price: parseFloat(formData.price),
         oldPrice: formData.oldPrice ? parseFloat(formData.oldPrice) : null,
         images: images.filter(img => img.trim()),
-        variants: variants.filter(v => v.color || v.memory),
+        variants: variants.filter(v => v.color || v.memory || v.simType || v.price),
         characteristics: characteristics.filter(c => c.name && c.value),
       }
 

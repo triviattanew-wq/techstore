@@ -27,10 +27,10 @@ export default function SettingsPage() {
     return (
       <div className="min-h-screen flex flex-col">
         <Header />
-        <main className="flex-1 bg-gray-50 dark:bg-dark-50 py-12">
+        <main className="flex-1 bg-gray-50 py-12">
           <div className="container-custom">
             <div className="flex items-center justify-center h-64">
-              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900 dark:border-dark-900"></div>
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900"></div>
             </div>
           </div>
         </main>
@@ -49,13 +49,13 @@ export default function SettingsPage() {
     <div className="min-h-screen flex flex-col">
       <Header />
       
-      <main className="flex-1 bg-gray-50 dark:bg-dark-50 py-12">
+      <main className="flex-1 bg-gray-50 py-12">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto">
             <div className="mb-8">
               <Link
                 href="/profile"
-                className="inline-flex items-center gap-2 text-gray-600 dark:text-dark-600 hover:text-gray-900 dark:hover:text-dark-900 mb-4"
+                className="inline-flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-4"
               >
                 <ArrowLeft className="w-4 h-4" />
                 Назад в профиль
@@ -71,35 +71,35 @@ export default function SettingsPage() {
                   <nav className="space-y-2">
                     <Link
                       href="/profile"
-                      className="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-600 dark:text-dark-600 hover:bg-gray-100 dark:hover:bg-dark-200 transition-colors"
+                      className="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors"
                     >
                       <User className="w-5 h-5" />
                       Профиль
                     </Link>
                     <Link
                       href="/profile/orders"
-                      className="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-600 dark:text-dark-600 hover:bg-gray-100 dark:hover:bg-dark-200 transition-colors"
+                      className="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors"
                     >
                       <Package className="w-5 h-5" />
                       Мои заявки
                     </Link>
                     <Link
                       href="/favorites"
-                      className="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-600 dark:text-dark-600 hover:bg-gray-100 dark:hover:bg-dark-200 transition-colors"
+                      className="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors"
                     >
                       <Heart className="w-5 h-5" />
                       Избранное
                     </Link>
                     <Link
                       href="/compare"
-                      className="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-600 dark:text-dark-600 hover:bg-gray-100 dark:hover:bg-dark-200 transition-colors"
+                      className="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors"
                     >
                       <Scale className="w-5 h-5" />
                       Сравнение
                     </Link>
                     <Link
                       href="/settings"
-                      className="flex items-center gap-3 px-4 py-3 rounded-lg bg-gray-100 dark:bg-dark-200 text-gray-900 dark:text-dark-900"
+                      className="flex items-center gap-3 px-4 py-3 rounded-lg bg-gray-100 text-gray-900"
                     >
                       <Settings className="w-5 h-5" />
                       Настройки
@@ -113,7 +113,7 @@ export default function SettingsPage() {
                 {/* Theme settings */}
                 <div className="dark-card rounded-2xl p-6">
                   <h2 className="text-xl font-semibold mb-4 dark-text">Тема оформления</h2>
-                  <p className="text-gray-600 dark:text-dark-600 mb-6">
+                  <p className="text-gray-600 mb-6">
                     Выберите тему, которая вам больше нравится
                   </p>
                   
@@ -124,15 +124,15 @@ export default function SettingsPage() {
                         onClick={() => setTheme(themeOption.value as any)}
                         className={`p-4 rounded-xl border-2 transition-all text-left ${
                           theme === themeOption.value
-                            ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/20'
-                            : 'border-gray-200 dark:border-dark-300 hover:border-gray-300 dark:hover:border-dark-400'
+                            ? 'border-primary-500 bg-primary-50'
+                            : 'border-gray-200 hover:border-gray-300'
                         }`}
                       >
                         <div className="flex items-center gap-3 mb-2">
                           <div className={`p-2 rounded-lg ${
                             theme === themeOption.value
-                              ? 'bg-primary-100 dark:bg-primary-800 text-primary-600 dark:text-primary-400'
-                              : 'bg-gray-100 dark:bg-dark-200 text-gray-600 dark:text-dark-600'
+                              ? 'bg-primary-100 text-primary-600'
+                              : 'bg-gray-100 text-gray-600'
                           }`}>
                             <themeOption.icon className="w-5 h-5" />
                           </div>
@@ -143,7 +143,7 @@ export default function SettingsPage() {
                             )}
                           </div>
                         </div>
-                        <p className="text-sm text-gray-600 dark:text-dark-600">
+                        <p className="text-sm text-gray-600">
                           {themeOption.description}
                         </p>
                       </button>
@@ -154,7 +154,7 @@ export default function SettingsPage() {
                 {/* Notifications */}
                 <div className="dark-card rounded-2xl p-6">
                   <h2 className="text-xl font-semibold mb-4 dark-text">Уведомления</h2>
-                  <p className="text-gray-600 dark:text-dark-600 mb-6">
+                  <p className="text-gray-600 mb-6">
                     Управляйте способами получения уведомлений
                   </p>
                   
@@ -162,41 +162,41 @@ export default function SettingsPage() {
                     <label className="flex items-center justify-between">
                       <div>
                         <h3 className="font-medium dark-text">Email уведомления</h3>
-                        <p className="text-sm text-gray-600 dark:text-dark-600">
+                        <p className="text-sm text-gray-600">
                           Получать уведомления о статусе заказов на email
                         </p>
                       </div>
                       <input
                         type="checkbox"
                         defaultChecked
-                        className="rounded border-gray-300 dark:border-dark-300"
+                        className="rounded border-gray-300"
                       />
                     </label>
                     
                     <label className="flex items-center justify-between">
                       <div>
                         <h3 className="font-medium dark-text">SMS уведомления</h3>
-                        <p className="text-sm text-gray-600 dark:text-dark-600">
+                        <p className="text-sm text-gray-600">
                           Получать SMS о важных обновлениях заказов
                         </p>
                       </div>
                       <input
                         type="checkbox"
-                        className="rounded border-gray-300 dark:border-dark-300"
+                        className="rounded border-gray-300"
                       />
                     </label>
                     
                     <label className="flex items-center justify-between">
                       <div>
                         <h3 className="font-medium dark-text">Маркетинговые рассылки</h3>
-                        <p className="text-sm text-gray-600 dark:text-dark-600">
+                        <p className="text-sm text-gray-600">
                           Получать информацию о скидках и новинках
                         </p>
                       </div>
                       <input
                         type="checkbox"
                         defaultChecked
-                        className="rounded border-gray-300 dark:border-dark-300"
+                        className="rounded border-gray-300"
                       />
                     </label>
                   </div>
@@ -205,7 +205,7 @@ export default function SettingsPage() {
                 {/* Privacy */}
                 <div className="dark-card rounded-2xl p-6">
                   <h2 className="text-xl font-semibold mb-4 dark-text">Приватность</h2>
-                  <p className="text-gray-600 dark:text-dark-600 mb-6">
+                  <p className="text-gray-600 mb-6">
                     Настройки конфиденциальности и безопасности
                   </p>
                   
@@ -213,44 +213,44 @@ export default function SettingsPage() {
                     <label className="flex items-center justify-between">
                       <div>
                         <h3 className="font-medium dark-text">Показывать мои отзывы</h3>
-                        <p className="text-sm text-gray-600 dark:text-dark-600">
+                        <p className="text-sm text-gray-600">
                           Разрешить другим пользователям видеть мои отзывы
                         </p>
                       </div>
                       <input
                         type="checkbox"
                         defaultChecked
-                        className="rounded border-gray-300 dark:border-dark-300"
+                        className="rounded border-gray-300"
                       />
                     </label>
                     
                     <label className="flex items-center justify-between">
                       <div>
                         <h3 className="font-medium dark-text">Аналитика использования</h3>
-                        <p className="text-sm text-gray-600 dark:text-dark-600">
+                        <p className="text-sm text-gray-600">
                           Помочь улучшить сервис, отправляя анонимные данные
                         </p>
                       </div>
                       <input
                         type="checkbox"
                         defaultChecked
-                        className="rounded border-gray-300 dark:border-dark-300"
+                        className="rounded border-gray-300"
                       />
                     </label>
                   </div>
                 </div>
 
                 {/* Danger zone */}
-                <div className="dark-card rounded-2xl p-6 border-red-200 dark:border-red-800">
-                  <h2 className="text-xl font-semibold mb-4 text-red-600 dark:text-red-400">Опасная зона</h2>
-                  <p className="text-gray-600 dark:text-dark-600 mb-6">
+                <div className="dark-card rounded-2xl p-6 border-red-200">
+                  <h2 className="text-xl font-semibold mb-4 text-red-600">Опасная зона</h2>
+                  <p className="text-gray-600 mb-6">
                     Необратимые действия с вашим аккаунтом
                   </p>
                   
                   <button className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">
                     Удалить аккаунт
                   </button>
-                  <p className="text-sm text-gray-500 dark:text-dark-500 mt-2">
+                  <p className="text-sm text-gray-500 mt-2">
                     Это действие нельзя отменить. Все ваши данные будут удалены.
                   </p>
                 </div>
